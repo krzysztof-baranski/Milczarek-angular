@@ -1,0 +1,18 @@
+:root {
+	--topbar-hight: 7%;
+}
+
+#topbar {
+	/*width: 100%;*/
+	height: var(--topbar-hight);
+	background-color: rgba(122, 122, 122, 50);
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+}
+
+#main {
+	position: relative;
+	top: 75px;
+}

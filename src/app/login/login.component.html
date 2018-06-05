@@ -1,0 +1,16 @@
+<div>
+	<form id="login-form" #f="ngForm" (ngSubmit) = "onClickSubmit()" >
+		<label>E-mail address:</label>
+		<br/>
+		<input type="text" name="username" placeholder="Type username" [(ngModel)]="user.username">
+		<br/>
+		<label>password:</label>
+		<br/>
+		<input type="password" name="passwd" placeholder="Type password" [(ngModel)]="user.passwd">
+		<br/>
+		<br/>
+		<input type="submit" value="Submit">
+		<input type="button" value="Reset" (click)="resetFormData()">
+	</form>
+</div>
+Email entered is : {{ user.username }}

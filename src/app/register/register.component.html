@@ -1,0 +1,28 @@
+<div>
+	<form id="register-form" #f="ngForm" (ngSubmit) = "registerUser()" >
+		<label>E-mail address:</label>
+		<br/>
+		<input type="text" name="username" placeholder="Type username" [(ngModel)]="user.username">
+		<br/>
+		<label>Password:</label>
+		<br/>
+		<input type="password" name="passwd" placeholder="Type password" [(ngModel)]="user.passwd">
+		<br/>
+		<label>Repeat password:</label>
+		<br/>
+		<input type="password" name="repeatedPasswd" placeholder="Repeat password" [(ngModel)]="user.repeatedPasswd">
+		<br/>
+		<label>Name:</label>
+		<br/>
+		<input type="text" name="name" placeholder="Type your name" [(ngModel)]="user.name">
+		<br/>
+		<label>Surname:</label>
+		<br/>
+		<input type="text" name="surname" placeholder="Type your surname" [(ngModel)]="user.surname">
+		<br/>
+		<br/>
+		<input type="submit" value="Submit">
+		<input type="button" value="Reset" (click)="resetFormData()">
+	</form>
+</div>
+Email entered is : {{ user.username }}
