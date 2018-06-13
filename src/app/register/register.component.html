@@ -1,25 +1,34 @@
 <div>
-	<form id="register-form" #f="ngForm" (ngSubmit) = "registerUser()" >
+	<pre>@{{ username.errors | json }}</pre>
+	<pre>@{{ username.invalid | json }} {{ username.dirty }} {{ isSubmitted }} </pre>
+
+	<form [formGroup]='register' (ngSubmit) = "registerUser()" id="register-form">
 		<label>E-mail address:</label>
 		<br/>
-		<input type="text" name="username" placeholder="Type username" [(ngModel)]="user.username">
+		<input type="text" name="username" placeholder="Type e-mial address" formControlName='username' required="true">
+		<div *ngIf="username.invalid && (username.dirty || isSubmitted)">Email is required.</div>
+  		<div *ngIf="username.errors?.pattern && !username.errors?.required">Invalid email(build in).</div>
 		<br/>
 		<label>Password:</label>
 		<br/>
-		<input type="password" name="passwd" placeholder="Type password" [(ngModel)]="user.passwd">
+		<input type="password" name="passwd" placeholder="Type password" formControlName="passwd" required="true">
+		<div *ngIf="passwd.errors?.required">Passwords required.</div>
+		<div *ngIf="passwd.errors?.pattern">Password must have 1 digit and 1 letter.</div>
 		<br/>
 		<label>Repeat password:</label>
 		<br/>
-		<input type="password" name="repeatedPasswd" placeholder="Repeat password" [(ngModel)]="user.repeatedPasswd">
+		<input type="password" name="repeatedPasswd" placeholder="Repeat password" formControlName="repeatedPasswd" required="true">
+		<div *ngIf="repeatedPasswd.errors?.required">Passwords required.</div>
+		<div *ngIf="passwd.errors?.identity">Passwords must be the same as repeated.</div>
 		<br/>
-		<label>Name:</label>
+		<!-- <label>Name:</label>
 		<br/>
 		<input type="text" name="name" placeholder="Type your name" [(ngModel)]="user.name">
 		<br/>
 		<label>Surname:</label>
 		<br/>
 		<input type="text" name="surname" placeholder="Type your surname" [(ngModel)]="user.surname">
-		<br/>
+		<br/> -->
 		<br/>
 		<input type="submit" value="Submit">
 		<input type="button" value="Reset" (click)="resetFormData()">

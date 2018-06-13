@@ -12,4 +12,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
   }
 
+  message = `To jest GŁÓWNA strona 
+	  Milczarkowej wypożyczalni filmów`;
+
 }
