@@ -1,7 +1,4 @@
 <div>
-	<pre>@{{ username.errors | json }}</pre>
-	<pre>@{{ username.invalid | json }} {{ username.dirty }} {{ isSubmitted }} </pre>
-
 	<form [formGroup]='register' (ngSubmit) = "registerUser()" id="register-form">
 		<label>E-mail address:</label>
 		<br/>

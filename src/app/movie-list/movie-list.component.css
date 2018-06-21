@@ -1,0 +1,13 @@
+#table {
+	display: table;
+    width: -webkit-fill-available;
+}
+
+.row {
+	display: table-row;
+    margin-bottom: 10px;
+}
+
+.cell {
+	display: table-cell;
+}

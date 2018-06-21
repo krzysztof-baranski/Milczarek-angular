@@ -11,6 +11,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
+import { MovieListComponent } from './movie-list/movie-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserComponent } from './user/user.component';
     TopBarComponent,
     LoginComponent,
     RegisterComponent,
-    UserComponent
+    UserComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,14 @@ import { UserComponent } from './user/user.component';
          {
          	path: 'user',
          	component: UserComponent
+         },
+         {
+         	path: 'movie-list',
+         	component: MovieListComponent
+         },
+         {
+             path: 'movie-list/details/:id',
+             component: MovieDetailsComponent
          },
          {
          	path: '**',

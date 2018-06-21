@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
 	PASSWORD_PATTERN = /^[a-z]{1}[0-9]{1}/;
 	isSubmitted = false;
 
-	constructor(/*private router: Router, */private frmBuilder: FormBuilder) { }
+	constructor(private router: Router, private frmBuilder: FormBuilder) { }
 
 	user = {
 		name:'',
@@ -29,23 +29,27 @@ export class RegisterComponent implements OnInit {
 
 	ngOnInit() {
 		this.register = this.frmBuilder.group({
-			username:["", [Validators.required, /*EmailValidator, */Validators.pattern(this.EMAIL_PATTERN)]],
-			// name:["", [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+			username:["", [Validators.required, Validators.pattern(this.EMAIL_PATTERN)]],
 			passwd:["", [Validators.required]],
 			repeatedPasswd:["", [Validators.required]]
 	    });
+
+	    this.register.valueChanges.subscribe(aa => {
+	    	this.resetErrors(); 
+	    });
 	}
 
-   get username() { return this.register.get('username'); }
-   get passwd() { return this.register.get('passwd'); }
-   get repeatedPasswd() { return this.register.get('repeatedPasswd'); }
+    get username() { return this.register.get('username'); }
+    get passwd() { return this.register.get('passwd'); }
+    get repeatedPasswd() { return this.register.get('repeatedPasswd'); }
 
 	registerUser () {
 		this.isSubmitted = true;
 		if (this.validate (this.user)) {
 			new User (this.user);  
 		} 
-		// this.router.navigate(['/user']);
+		localStorage.setItem ('username', this.username.value); 
+		this.router.navigate(['/user']);
 	} 
 
 	validate (data) {
@@ -56,6 +60,24 @@ export class RegisterComponent implements OnInit {
 	    }
 
 	    // PASSWORD =================================
+	    if (this.passwd.value === '') {
+	    	if (this.passwd.errors) {
+	    		this.passwd.errors['required'] = true;
+	    	} else {
+	    		this.passwd.errors = { required: true };
+	    	}
+	    	return false;
+	    } 
+
+	    if (!this.PASSWORD_PATTERN.test(this.passwd.value)) {
+	    	if (this.passwd.errors) {
+	    		this.passwd.errors['pattern'] = true;
+	    	} else {
+	    		this.passwd.errors = { pattern: true };
+	    	}
+	    	return false;
+	    } 
+
 	    if (this.passwd.value !== this.repeatedPasswd.value) {
 	    	console.log ('elo');
 	    	if (this.passwd.errors) {
@@ -66,23 +88,7 @@ export class RegisterComponent implements OnInit {
 	    	return false;
 	    } 
 
-	    	// resetowac bledy po wprowadzaniu zmian
-	    if (!this.PASSWORD_PATTERN.test(this.passwd.value)) {
-	    	if (this.passwd.errors) {
-	    		this.passwd.errors['pattern'] = true;
-	    	} else {
-	    		this.passwd.errors = { identity: true };
-	    	}
-	    	return false;
-	    } 
-
-
-		// if (this.EMAIL_PATTERN.test(data.username)) {
-		if (!this.register.valid) {
-			console.warn ('!!!!! valid'); 
-		} else {
-			console.warn ('!!!!! NOT valid'); 
-		}
+	    return true;
 	}
 
   	resetFormData () {
@@ -90,4 +96,11 @@ export class RegisterComponent implements OnInit {
 		document.getElementById("register-form").reset();
 	} 
 
+	resetErrors () {
+    	console.log ('@reset errors', this); 
+
+		this.passwd.errors = null;
+		this.repeatedPasswd.errors = null;
+		this.username.errors = null;
+	}   
 }

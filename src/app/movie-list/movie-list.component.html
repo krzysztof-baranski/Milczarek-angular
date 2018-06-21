@@ -1,0 +1,22 @@
+<div>
+  Movie List:
+  <ul id="table">
+  	<li class="row">
+  		<span class="cell"><h2>Title</h2></span>
+  		<span class="cell"><h2>Director</h2></span>
+  		<span class="cell"><h2>Genre</h2></span>
+  		<span class="cell"><h2>Country</h2></span>
+  		<span class="cell"><h2>Year</h2></span>
+  		<span class="cell"><h2>Action</h2></span>
+  	</li>
+  	<hr>
+  	<li class="row" *ngFor="let movie of movieList; let i = index" [attr.data-index]="i" (click)="openMovieDetails(i)">
+  		<span class="cell">{{movie.title}}</span>
+  		<span class="cell">{{movie.director}}</span>
+  		<span class="cell">{{movie.genre}}</span>
+  		<span class="cell">{{movie.country}}</span>
+  		<span class="cell">{{movie.year}}</span>
+  		<button class="cell" (click)="rentMovie($event, i)">Rent</button>
+  	</li>
+  </ul>
+</div>

@@ -9,7 +9,13 @@ export class UserComponent implements OnInit {
 
   constructor() { }
 
+  user = {
+  	username: ''
+  };
+
   ngOnInit() {
+  	this.user.username = localStorage.getItem('username')
+  	console.warn ('@@', this.user.username); 
   }
 
 }
