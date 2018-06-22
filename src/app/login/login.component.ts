@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {
 	}
 
-  	onClickSubmit () {
-      	alert("Entered Email id : " + this.username);
-	}
+ //  	onClickSubmit () {
+ //      	alert("Entered Email id : " + this.username);
+	// }
 
 	resetFormData () {
 		document.getElementById("login-form").reset();

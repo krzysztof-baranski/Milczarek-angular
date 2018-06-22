@@ -1,0 +1,21 @@
+<p>
+  Movie details: 
+</p>
+<span><img [src]="movie.poster"></span>
+<span>
+	<div>
+		<h2>{{ movie.title }}</h2>
+		<h3>({{ movie.year }})</h3>
+	</div>
+	<div>{{ movie.duration }}</div>
+	<div>{{ movie.description }}</div>
+	<div>
+		<span>Reżyseria:</span><span>{{ movie.director }}</span>
+	</div>
+	<div>
+		<span>Gatunek:</span><span>{{ movie.genre }}</span>
+	</div>
+	<div>
+		<span>Produkcja:</span><span>{{ movie.country }}</span>
+	</div>
+</span>

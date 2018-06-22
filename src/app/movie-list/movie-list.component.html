@@ -1,16 +1,19 @@
 <div>
   Movie List:
+  <span>
+    <input [(ngModel)]="term" type="text" name="search" placeholder="Szukaj...">
+  </span>
   <ul id="table">
-  	<li class="row">
-  		<span class="cell"><h2>Title</h2></span>
-  		<span class="cell"><h2>Director</h2></span>
-  		<span class="cell"><h2>Genre</h2></span>
-  		<span class="cell"><h2>Country</h2></span>
-  		<span class="cell"><h2>Year</h2></span>
+  	<li class="row" (click)="sortBy($event)">
+  		<span class="cell" name="title"><h2>Title</h2></span>
+  		<span class="cell" name="director"><h2>Director</h2></span>
+  		<span class="cell" name="genre"><h2>Genre</h2></span>
+  		<span class="cell" name="country"><h2>Country</h2></span>
+  		<span class="cell" name="year"><h2>Year</h2></span>
   		<span class="cell"><h2>Action</h2></span>
   	</li>
   	<hr>
-  	<li class="row" *ngFor="let movie of movieList; let i = index" [attr.data-index]="i" (click)="openMovieDetails(i)">
+  	<li class="row" *ngFor="let movie of movies |filter:term |sortBy:sortField:sortDescending; let i = index" [attr.data-index]="i" (click)="openMovieDetails(movie.id)">
   		<span class="cell">{{movie.title}}</span>
   		<span class="cell">{{movie.director}}</span>
   		<span class="cell">{{movie.genre}}</span>
