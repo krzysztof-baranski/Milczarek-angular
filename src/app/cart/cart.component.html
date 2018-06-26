@@ -1,0 +1,15 @@
+<div>
+	<div *ngIf="movies.length > 0">	
+		<h4>Filmy w koszyku:</h4>
+		<ul id="table">
+			<li class="row list-group list-group-flush" *ngFor="let movie of movies">
+				<span class="cell list-group-item">{{ movie.title }}</span>
+				<button class="cell btn btn-primary btn-sm" (click)="remove(movie.id)">Usuń z koszyka</button>
+			</li>
+		</ul>
+	</div>
+	<div *ngIf="movies.length === 0">
+		<h4>Nic tu nie ma :(</h4>
+		<a href="/movie-list">Idź do listy filmów</a>
+	</div>
+</div>

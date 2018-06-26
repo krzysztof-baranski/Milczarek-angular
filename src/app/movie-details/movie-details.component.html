@@ -1,21 +1,29 @@
-<p>
-  Movie details: 
-</p>
-<span><img [src]="movie.poster"></span>
-<span>
-	<div>
+<h4 style="margin-bottom: 3%;">
+Movie details: 
+</h4>
+<span class="movie-details">
+	<span><img [src]="movie.poster"></span>
+	<span class="">
 		<h2>{{ movie.title }}</h2>
 		<h3>({{ movie.year }})</h3>
+	</span>
+	<div class="movie-description">
+		<h3>{{ movie.duration }}</h3>
+		<h5>{{ movie.description }}</h5>
+		<h3 class="details">
+			<span>Reżyseria:&nbsp;</span><span>{{ movie.director }}</span>
+		</h3>
+		<h5 class="details">
+			<span>Gatunek:&nbsp;</span><span>{{ movie.genre }}</span>
+		</h5>
+		<h5 class="details">
+			<span>Produkcja:&nbsp;</span><span>{{ movie.country }}</span>
+		</h5>
 	</div>
-	<div>{{ movie.duration }}</div>
-	<div>{{ movie.description }}</div>
-	<div>
-		<span>Reżyseria:</span><span>{{ movie.director }}</span>
-	</div>
-	<div>
-		<span>Gatunek:</span><span>{{ movie.genre }}</span>
-	</div>
-	<div>
-		<span>Produkcja:</span><span>{{ movie.country }}</span>
-	</div>
+</span>
+<span>
+	<button type="button" class="btn btn-secondary cart" [ngClass]="{ 'disabled': !user.id && user.id !== 0 }" (click)="addToCart(movie)">Dodaj do koszyka</button>
+	<div *ngIf="showLogInPopup?.value" class="popover" (click)="addToCart($event, i)">Musisz być zalogowany</div>
+	<div *ngIf="showAddedPopup?.value" class="popover">Dodano do koszyka</div>
+	<div *ngIf="showAlreadyIsPopup?.value" class="popover">Już jest dodany</div>
 </span>

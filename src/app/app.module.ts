@@ -16,6 +16,7 @@ import { UserComponent } from './user/user.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SortByPipe } from './pipes/sort-by.pipe';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SortByPipe } from './pipes/sort-by.pipe';
     UserComponent,
     MovieListComponent,
     MovieDetailsComponent,
-    SortByPipe
+    SortByPipe,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,10 @@ import { SortByPipe } from './pipes/sort-by.pipe';
     RouterModule.forRoot([
          {
             path: 'login',
+            component: LoginComponent
+         },
+         {
+            path: 'logout',
             component: LoginComponent
          },
          {
@@ -59,6 +65,10 @@ import { SortByPipe } from './pipes/sort-by.pipe';
              path: 'movie-details/:id',
              component: MovieDetailsComponent
          },
+         {
+             path: 'cart',
+             component: CartComponent
+         }
          {
          	path: '**',
          	name: 'home',

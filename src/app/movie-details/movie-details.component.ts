@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Constants } from '../Constants';
+import { ConstantsService } from '../services/constants.service';
+import { CartService } from '../services/cart.service';
+import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,21 +11,43 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { 
-  console.warn('@@ this',this);
+  constructor(private route: ActivatedRoute, 
+    private constants: ConstantsService,
+    private cartService: CartService,
+    private userService: UserService) { 
   }
 
   movie;
-  constants = new Constants (); 
 
+  public get user() : Object {
+    return this.userService.currentUser;
+  }
 
   ngOnInit() {
-  	console.warn ('@@@ ngInit', ); 
   	this.sub = this.route.params.subscribe(params => {
        this.id = +params['id']; // (+) converts string 'id' to a number
-  		console.warn ('####', this.id); 
     });
   	this.movie = this.constants.movies[this.id]; 
   }
 
+  addToCart(movie) {
+    if (!this.user.id && this.user.id !== 0) {
+      this.showLogInPopup = { value: true }; // musi byc obiekt bo przekazywany jest wtedy przez referencje
+      setTimeout (function (show) {
+        show.value = false;
+      }, 1500, this.showLogInPopup); 
+    } else {
+      if (this.cartService.add(movie)) {
+        this.showAddedPopup = { value: true };
+        setTimeout(function (show) {
+          show.value = false;
+        }, 1500, this.showAddedPopup); 
+      } else {
+        this.showAlreadyIsPopup = { value: true };
+        setTimeout(function (show) {
+          show.value = false;
+        }, 1500, this.showAlreadyIsPopup);
+      }
+    } 
+  } 
 }

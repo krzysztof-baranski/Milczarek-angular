@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -7,32 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   user = {
   	username: ''
   };
 
   ngOnInit() {
-  	this.user.username = localStorage.getItem('username')
+  	this.user = this.userService.currentUser; 
   	console.warn ('@@', this.user.username); 
   }
-
-}
-
-let users = [];
-
-export class User {
-	newUser;
-	constructor(user) {
-		this.newUser = Object.assign({}, user);
-		this.newUser.id = users.length;
-		saveToDB (this.newUser); 
-	}
-
-	function saveToDB (user) {
-		users.push(user); 
-		console.log ('@@@@', users); 
-	}
 
 }

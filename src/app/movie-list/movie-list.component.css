@@ -6,8 +6,11 @@
 .row {
 	display: table-row;
     margin-bottom: 10px;
+    cursor: pointer
 }
 
 .cell {
 	display: table-cell;
+	/*width: 100px;
+	padding: 1px;*/
 }

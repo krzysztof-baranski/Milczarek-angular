@@ -1,4 +1,11 @@
-export class Constants {
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ConstantsService {
+
+  constructor() { }
 
   public get movies() {
   	return this._movies;
@@ -7,6 +14,17 @@ export class Constants {
   public set movies (v : Object[]) {
   	this._movies = v;
   }
+
+  public get emailPattern () : string {
+    return this.EMAIL_PATTERN;
+  }
+
+  public get passwordPattern () : string {
+    return this.PASSWORD_PATTERN;
+  }
+
+  private EMAIL_PATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  private PASSWORD_PATTERN = /^[a-z]{1}[0-9]{1}/;
 
   private _movies = [
   	{
@@ -164,5 +182,4 @@ export class Constants {
   		duration: '2 godz. 34 min.'
   	}
   ];
-
 }

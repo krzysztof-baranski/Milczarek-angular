@@ -1,8 +1,8 @@
 <div>
-  Movie List:
-  <span>
-    <input [(ngModel)]="term" type="text" name="search" placeholder="Szukaj...">
-  </span>
+  <form class="form-group">    
+    <input class="form-control" type="search"  [(ngModel)]="term" type="text" name="search" placeholder="Szukaj...">
+  </form>
+  <h4>Movie List:</h4>
   <ul id="table">
   	<li class="row" (click)="sortBy($event)">
   		<span class="cell" name="title"><h2>Title</h2></span>
@@ -13,13 +13,16 @@
   		<span class="cell"><h2>Action</h2></span>
   	</li>
   	<hr>
-  	<li class="row" *ngFor="let movie of movies |filter:term |sortBy:sortField:sortDescending; let i = index" [attr.data-index]="i" (click)="openMovieDetails(movie.id)">
-  		<span class="cell">{{movie.title}}</span>
-  		<span class="cell">{{movie.director}}</span>
-  		<span class="cell">{{movie.genre}}</span>
-  		<span class="cell">{{movie.country}}</span>
-  		<span class="cell">{{movie.year}}</span>
-  		<button class="cell" (click)="rentMovie($event, i)">Rent</button>
+  	<li class="row list-group list-group-flush" *ngFor="let movie of movies |filter:term |sortBy:sortField:sortDescending; let i = index" [attr.data-index]="i" (click)="openMovieDetails(movie.id)">
+  		<span class="cell list-group-item">{{movie.title}}</span>
+  		<span class="cell list-group-item">{{movie.director}}</span>
+  		<span class="cell list-group-item">{{movie.genre}}</span>
+  		<span class="cell list-group-item">{{movie.country}}</span>
+  		<span class="cell list-group-item">{{movie.year}}</span>
+  		<button class="cell btn btn-primary btn-sm" [ngClass]="{ 'disabled': !user.id && user.id !== 0 }" (click)="addToCart($event, i)">Dodaj do koszyka</button>
+      <div *ngIf="showPopup === i" class="popover" (click)="addToCart($event, i)">Musisz być zalogowany</div>
+      <div *ngIf="showAddedPopup?.value === i" class="popover">Dodano do koszyka</div>
+      <div *ngIf="showAlreadyIsPopup?.value === i" class="popover">Już jest dodany</div>
   	</li>
   </ul>
 </div>
