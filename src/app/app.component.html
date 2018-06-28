@@ -6,10 +6,11 @@
 	<a class="nav-link" routerLink="home">HOME</a>
 	<a class="nav-link" routerLink="movie-list">Movie List</a>
 	<span class="navbar-left-align">
+		<a class="nav-link" routerLink="admin" *ngIf="currentUser.admin">Panel admina</a>
+		<a class="nav-link" routerLink="cart" [ngClass]="{ 'disabled cert-disabled': !currentUser.id && currentUser.id !== 0 }">Koszyk</a>
 		<a class="nav-link" routerLink="login" *ngIf="!(currentUser?.id >= 0)">Login</a>
 		<a class="nav-link" routerLink="register" *ngIf="!(currentUser?.id >= 0)">Register</a>
 		<a class="nav-link" *ngIf="currentUser?.id >= 0" routerLink="logout">Logout</a>
-		<a class="nav-link" routerLink="cart" [ngClass]="{ 'disabled cert-disabled': !currentUser.id && currentUser.id !== 0 }">Koszyk</a>
 		<span class="nav-link dropdown" *ngIf="currentUser?.id >= 0">{{ currentUser.username }}
 		</span>
 	</span>

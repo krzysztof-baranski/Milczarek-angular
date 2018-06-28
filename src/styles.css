@@ -1,1 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+	margin: 15px;
+}
+
+.navbar {
+	margin: -15px -15px 20px;
+	/*margin-bottom: 2%;*/
+}
+
+body::after {
+  content: "";
+  background: url('assets/background-big.jpg') no-repeat;
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+.btn-lg {
+	width: 130px;
+	margin: 1px;
+}
+
+.btn-sm {
+	width: 130px;
+	margin: 1px;
+}
+
+.valid {
+	border-color: green !important;
+	/*background-color: rgb(0, 255, 189) !important;*/
+}
+
+.valid:focus {
+	box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, .25) !important;
+}
+
+.navbar-left-align {
+    right: 20px;
+    position: absolute;
+    display: inline-flex;
+}
+.movie-details {
+    display: -webkit-box;
+}
+.movie-details img {
+	margin-bottom: 10%;
+}
+
+.movie-description {
+	margin: 20px;
+	width: 50%;
+}
+
+.details {
+	margin-top: 15px;
+}
+
+.cart {
+	background: url('assets/cart.png') no-repeat;
+	background-size: contain;
+    font-size: 1.2em;
+    background-color: #5a6268;
+    position: absolute;
+    right: 10%;
+    top: 31%;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active {
+	background: url('assets/cart.png') no-repeat;
+	background-color: #4e555b;
+	background-size: contain;
+}
+
+.popover {
+    position: relative;
+    right: 0px;
+    left: -20px;
+    top: -20px;
+    width: max-content;
+    background-color: antiquewhite;
+    margin: -20px -16px -3px;
+}
+
+.cert-disabled {
+  pointer-events: none;
+}
+
+.list-group-item { 
+  background-color: transparent;
+}
+
+.list-group-flush:hover {
+  background-color: rgba(100, 100, 100, 0.2);
+}
+
+.list-group {
+    display: -webkit-box;
+}

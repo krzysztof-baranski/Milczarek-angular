@@ -39,7 +39,8 @@ export class UserService {
 	    if (user) {
 	    	this.currentUser = {
 	    		username: user.username,
-	    		id: user.id
+	    		id: user.id,
+	    		admin: user.admin
 	    	};
 	    	this.setGlobalStorage(this.currentUser);
 	    } 
@@ -64,7 +65,7 @@ export class UserService {
 	} 
 
 	setGlobalStorage (user) {
-		localStorage.setItem('user', JSON.stringify({ username: user.username, id: user.id })); 
+		localStorage.setItem('user', JSON.stringify(user)); 
 		this.router.navigate(['/user']);
 	}  
 
@@ -119,10 +120,17 @@ export class UserService {
 	}
 }
 
-let users = [ {
-  id: 0,
-  username: 'krz',
-  passwd: 'a1'
+let users = [{
+	id: 0,
+	username: 'krz',
+	passwd: 'a1',
+	admin: true
+},
+{
+	id: 1,
+	username: 'kk',
+	passwd: 'a2',
+	admin: false
 }];
 
 export class User {

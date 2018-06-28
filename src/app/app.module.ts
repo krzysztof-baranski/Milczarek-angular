@@ -17,6 +17,7 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { CartComponent } from './cart/cart.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CartComponent } from './cart/cart.component';
     MovieListComponent,
     MovieDetailsComponent,
     SortByPipe,
-    CartComponent
+    CartComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,11 @@ import { CartComponent } from './cart/cart.component';
          {
              path: 'cart',
              component: CartComponent
-         }
+         },
+         {
+             path: 'admin',
+             component: AdminComponent
+         },
          {
          	path: '**',
          	name: 'home',
