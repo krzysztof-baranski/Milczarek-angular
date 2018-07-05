@@ -1,13 +1,11 @@
-<!-- <div>
-	<button class="btn btn-primary btn-sm" (click)="addMovie()">Dodaj film</button>
-	<button class="btn btn-primary btn-sm" (click)="romoveUser()">Usuń użytkownika</button>
-</div> -->
-<div>
+<div (click)="clearMessage()">
 	<p>
-		<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Link with href</a>
-		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Button with data-target</button>
+		<button class="btn btn-primary" data-toggle="collapse" href="#collapseAddMovie" role="button" aria-expanded="false" aria-controls="collapseAddMovie">Dodaj film</button>
+		<button class="btn btn-primary" data-toggle="collapse" href="#collapseDeleteMovie" role="button" aria-expanded="false" aria-controls="collapseDeleteMovie">Usuń film</button>
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAddUser" aria-expanded="false" aria-controls="collapseAddUser">Dodaj użytkownika</button>
+		<button class="btn btn-primary" data-toggle="collapse" href="#collapseDeleteUser" role="button" aria-expanded="false" aria-controls="collapseDeleteUser">Usuń użykownika</button>
 	</p>
-	<div class="collapse" id="collapseExample">
+	<div class="collapse" id="collapseAddMovie">
 		<div class="card card-body">
 			<form class="form-group" [formGroup]="newMovie" (ngSubmit)="addMovie()">
 				<label>Title:</label>
@@ -38,13 +36,77 @@
 			</form>
 		</div>
 	</div>
-	<!-- <div *ngIf="movies.length > 0">	
-		<h4>Filmy w koszyku:</h4>
-		<ul id="table">
-			<li class="row list-group list-group-flush" *ngFor="let movie of movies">
-				<span class="cell list-group-item">{{ movie.title }}</span>
-				<button class="cell btn btn-primary btn-sm" (click)="remove(movie.id)">Usuń z koszyka</button>
-			</li>
-		</ul>
-	</div> -->
+	<div class="collapse" id="collapseDeleteMovie">
+		<div class="card card-body">
+			<div>
+				<form class="form-group">    
+					<input class="form-control" type="search"  [(ngModel)]="term" type="text" name="search" placeholder="Szukaj...">
+				</form>
+				<h4>Movie List:</h4>
+				<ul id="table">
+					<li class="row">
+						<span class="cell" name="title"><h2>Title</h2></span>
+						<span class="cell" name="director"><h2>Director</h2></span>
+						<span class="cell" name="genre"><h2>Genre</h2></span>
+						<span class="cell" name="country"><h2>Country</h2></span>
+						<span class="cell" name="year"><h2>Year</h2></span>
+						<span class="cell"><h2>Action</h2></span>
+					</li>
+					<hr>
+					<li class="row list-group list-grosup-flush" *ngFor="let movie of movies |filter:term  |sortBy:sortField:sortDescending; let i = index; trackBy: index" [attr.data-index]="i">
+						<span class="cell list-gsroup-item">{{movie.title}}</span>
+						<span class="cell list-grousp-item">{{movie.director}}</span>
+						<span class="cell list-grosup-item">{{movie.genre}}</span>
+						<span class="cell list-grsoup-item">{{movie.country}}</span>
+						<span class="cell list-grsoup-item">{{movie.year}}</span>
+						<button class="cell btn btn-primary btn-sm" (click)="deleteMovie(movie.id)">Usuń</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="collapse" id="collapseAddUser">
+		<div class="card card-body">
+			<div>
+				<h4>Dodaj użytkownika:</h4>
+				<form class="form-group " id="add-user" [formGroup]="addUserForm" (ngSubmit) = "addUser()" >
+					<label>E-mail address:</label>
+					<br/>
+					<input class="form-control" type="text" name="username" placeholder="Type username" formControlName="username" required="true">
+					<br/>
+					<label>Password:</label>
+					<br/>
+					<input class="form-control" type="password" name="passwd" placeholder="Type password" formControlName="passwd" required="true">
+					<br/>
+					<br/>
+					<label>Repeat password:</label>
+					<br/>
+					<input class="form-control" type="password" name="repeatedPasswd" placeholder="Repeat password" formControlName="repeatedPasswd" required="true">
+					<br/>
+					<button class="btn btn-primary btn-lg" type="submit">Dodaj</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="collapse" id="collapseDeleteUser">
+		<div class="card card-body">
+			<div>
+				<h4>User List:</h4>
+				<ul id="table">
+					<li class="row">
+						<span class="cell" name="title"><h2>Id</h2></span>
+						<span class="cell" name="title"><h2>Username</h2></span>
+						<span class="cell"><h2>Action</h2></span>
+					</li>
+					<hr>
+					<li class="row list-group list-grosup-flush" *ngFor="let user of users; let i = index; trackBy: index" [attr.data-index]="i">
+						<span class="cell list-gsroup-item">{{ user.id }}</span>
+						<span class="cell list-gsroup-item">{{ user.username }}</span>
+						<button class="cell btn btn-primary btn-sm" (click)="deleteUser(user.id)">Usuń</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<h4 *ngIf="message">{{ message }}</h4>
 </div>

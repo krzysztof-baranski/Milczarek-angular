@@ -67,8 +67,6 @@ export class MovieListComponent implements OnInit {
   		} else {
   			this.sortField = text;
   		}
-
   	} 
-  	console.warn ('@@@', event); 
   } 
 }

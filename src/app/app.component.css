@@ -3,7 +3,6 @@
 }
 
 #topbar {
-	/*width: 100%;*/
 	height: var(--topbar-hight);
 	background-color: rgba(122, 122, 122, 50);
 	position: absolute;

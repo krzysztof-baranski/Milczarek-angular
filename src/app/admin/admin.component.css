@@ -1,0 +1,19 @@
+#table {
+	display: table;
+    width: -webkit-fill-available;
+}
+
+.row {
+	display: table-row;
+    margin-bottom: 10px;
+    cursor: pointer
+}
+
+.cell {
+	display: table-cell;
+}
+
+button {
+	margin: 1%;
+    width: 155px;
+}

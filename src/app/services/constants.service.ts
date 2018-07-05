@@ -23,6 +23,16 @@ export class ConstantsService {
     return this.PASSWORD_PATTERN;
   }
 
+  public deleteMovie (id) {
+    let index = _.findIndex(this._movies, function (item) {
+      return item.id === id;
+    });
+
+    if (index >= 0) {
+      return !!this._movies.splice(index, 1); 
+    } 
+  } 
+
   private EMAIL_PATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   private PASSWORD_PATTERN = /^[a-z]{1}[0-9]{1}/;
 
@@ -123,7 +133,7 @@ export class ConstantsService {
   		country: 'USA',
   		year: 2000,
   		poster: 'http://1.fwcdn.pl/po/09/36/936/7472818.6.jpg',
-  		description: 'Generał Maximus - prawa ręka cesarza, szczęśliwy mąż i ojciec - w jednej chwili traci wszystko. Jako niewolnik-gladiator musi walczyć na arenie o przeżycie.'
+  		description: 'Generał Maximus - prawa ręka cesarza, szczęśliwy mąż i ojciec - w jednej chwili traci wszystko. Jako niewolnik-gladiator musi walczyć na arenie o przeżycie.',
   		duration: '2 godz. 35 min.'
   	},
   	{

@@ -47,8 +47,6 @@ export class LoginComponent implements OnInit {
 	} 
 
 	resetErrors () {
-		console.log ('@reset errors', this); 
-
 		this.passwd.errors = null;
 		this.username.errors = null;
 	} 

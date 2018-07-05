@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ConstantsService } from '../services/constants.service';
-// import { User } from '../user/user.component.ts';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -26,6 +25,20 @@ export class UserService {
     	this._currentUser = v;
     }
 
+    public public get users() : Object[] {
+    	return User.users;
+    }
+
+    public deleteUser (id) {
+	    let index = _.findIndex(User.users, function (item) {
+	        return item.id === id && item.id !== this.currentUser.id;
+	    }.bind(this));
+
+	    if (index >= 0) {
+	        return !!User.users.splice(index, 1); 
+	    } 
+	} 
+
     logout () {
     	localStorage.removeItem('user'); 
     	this.currentUser = {};
@@ -47,7 +60,7 @@ export class UserService {
         this.currentUserChange.next(this.currentUser);
     } 
 
-	register (form) {
+	register (form, byAdmin) {
 		this.username = form.get('username');
 	    this.passwd = form.get('passwd'); 
         this.repeatedPasswd = form.get('repeatedPasswd');
@@ -60,7 +73,9 @@ export class UserService {
 			}  
 			console.log (User.users); 
 			new User (user);
-			this.setGlobalStorage(user);
+			if (!byAdmin) {
+				this.setGlobalStorage(user);
+			}
 		} 
 	} 
 
@@ -79,7 +94,11 @@ export class UserService {
 	validate () {
 		// USERNAME ================================
 		if (!this.constants.emailPattern.test(this.username.value)) {
-	       	this.username.errors["pattern"] = true;
+	       	if (this.username.errors) {
+	       		this.username.errors["pattern"] = true;
+	       	} else {
+	       		this.username.errors = { pattern: true };
+	       	}
 	       	this.username.status = 'INVALID';
 	       	return false;
 	    }
@@ -142,8 +161,6 @@ export class User {
 		this.newUser = Object.assign({}, user);
 		this.saveToDB (this.newUser); 
 	}
-
-
 
 	saveToDB (user) {
 		users.push(user); 

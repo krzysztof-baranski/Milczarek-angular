@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
@@ -9,7 +8,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
@@ -23,7 +21,6 @@ import { AdminComponent } from './admin/admin.component';
   declarations: [
     AppComponent,
     MainComponent,
-    TopBarComponent,
     LoginComponent,
     RegisterComponent,
     UserComponent,
